@@ -19,6 +19,12 @@ services:
       - "8080:8080"
     depends_on: 
       - rabbitmq
+  
+  consumer:
+    build: ./consumer
+    container_name: consumer
+    depends_on: 
+      - rabbitmq
 
 volumes:
   rabbitmq-data:
