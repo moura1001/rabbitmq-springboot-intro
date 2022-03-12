@@ -5,8 +5,9 @@ services:
     image: rabbitmq:3.9-management
     container_name: rabbitmq
     hostname: "rabbitmq-master"
+    expose:
+      - "5672"
     ports:
-      - "5672:5672"
       - "15672:15672"
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
@@ -14,6 +15,8 @@ services:
   producer:
     build: ./producer
     container_name: producer
+    ports:
+      - "8080:8080"
     depends_on: 
       - rabbitmq
 

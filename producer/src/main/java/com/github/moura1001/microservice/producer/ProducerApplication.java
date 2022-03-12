@@ -1,16 +1,17 @@
 package com.github.moura1001.microservice.producer;
 
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.github.moura1001.microservice.producer.service.ProducerService;
+
 @SpringBootApplication
 public class ProducerApplication implements CommandLineRunner {
 	
 	@Autowired
-	private RabbitTemplate rabbitTemplate;
+	private ProducerService service;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProducerApplication.class, args);
@@ -18,7 +19,7 @@ public class ProducerApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		rabbitTemplate.convertAndSend("RabbitExchange", "RabbitRouting", "Rabbit message");		
+		service.sendMessage("Rabbit message");
 	}
 
 }
