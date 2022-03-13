@@ -22,6 +22,9 @@ services:
   
   consumer:
     build: ./consumer
+    environment:
+      RABBIT_USER: ${RABBIT_USER}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
     container_name: consumer
     depends_on: 
       - rabbitmq
